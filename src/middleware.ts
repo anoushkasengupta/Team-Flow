@@ -20,9 +20,32 @@ const publicPaths = [
 // Flag to track if we've already initialized the socket
 let socketInitialized = false;
 
-// This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
-  return NextResponse.next();
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Allow public paths
+  if (publicPaths.some((path) => pathname.startsWith(path))) {
+    return NextResponse.next();
+  }
+
+  // Get token from cookies
+  const token = request.cookies.get('token')?.value;
+
+  if (!token) {
+    // Redirect to login if no token
+    const loginUrl = new URL('/auth/login', request.url);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  try {
+    // Verify JWT token
+    jwt.verify(token, JWT_SECRET);
+    return NextResponse.next();
+  } catch (err) {
+    // Invalid token, redirect to login
+    const loginUrl = new URL('/auth/login', request.url);
+    return NextResponse.redirect(loginUrl);
+  }
 }
 
 // Configure which paths the middleware should run on
