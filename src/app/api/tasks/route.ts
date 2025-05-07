@@ -31,9 +31,11 @@ export async function GET(req: NextRequest) {
     const user = await verifyToken(req);
 
     const url = new URL(req.url);
-    const filter = url.searchParams.get('filter');
+    const filter = url.searchParams.get('filter') || '';
+    const status = url.searchParams.get('status') || '';
+    const priority = url.searchParams.get('priority') || '';
 
-    let query = {};
+    let query: any = {};
     switch (filter) {
       case 'assigned':
         query = { assignedTo: user.id };
@@ -49,6 +51,16 @@ export async function GET(req: NextRequest) {
         break;
       default:
         query = { assignedTo: user.id };
+    }
+
+    if (status) {
+      query.status = status;
+    }
+
+    // Add priority filtering if priority is provided
+    // Assuming priority is a field in your Task model
+    if (priority) {
+      query.priority = priority;
     }
 
     const tasks = await Task.find(query).sort({ dueDate: 1 });
@@ -80,7 +92,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Helper to generate due dates
-    function generateDueDates(startDate, type, endDate) {
+    function generateDueDates(startDate: string | number | Date, type: string, endDate: string | number | Date | null) {
       const dates = [];
       let current = new Date(startDate);
       const maxOccurrences = 50; // safety limit
