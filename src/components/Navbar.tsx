@@ -82,14 +82,7 @@ export default function Navbar() {
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <>
-            <Link href="/login">
-              <Button variant="outline" size="sm">Login</Button>
-            </Link>
-            <Link href="/register">
-              <Button size="sm">Sign Up</Button>
-            </Link>
-          </>
+          <></>
         )}
       </div>
 
@@ -119,14 +112,7 @@ export default function Navbar() {
                 {isAuthenticated ? (
                   <Button className="w-full" variant="outline">Sign Out</Button>
                 ) : (
-                  <>
-                    <Link href="/login" className="w-full">
-                      <Button variant="outline" className="w-full">Login</Button>
-                    </Link>
-                    <Link href="/register" className="w-full">
-                      <Button className="w-full">Sign Up</Button>
-                    </Link>
-                  </>
+                  <></>
                 )}
               </div>
             </div>
