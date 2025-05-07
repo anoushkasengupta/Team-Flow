@@ -35,7 +35,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="w-full bg-white/80 backdrop-blur-md shadow-lg border-b border-gray-200 px-4 py-2 flex items-center justify-between">
+    <nav className="sticky top-0 w-full bg-white/80 backdrop-blur-md shadow-lg border-b border-gray-200 px-4 py-2 flex items-center justify-between">
       {/* Logo */}
       <Link href="/" className="text-2xl font-bold text-blue-600">Taskify</Link>
 

@@ -58,7 +58,7 @@ export default function HomePage() {
       <div className="max-w-2xl w-full text-center flex flex-col items-center gap-8 py-20">
         <div className="flex items-center justify-center gap-2">
           <Rocket className="h-8 w-8 text-white animate-bounce" />
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Team Task Manager</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Team Taskify</h1>
         </div>
         <p className="text-lg md:text-xl text-gray-300 max-w-xl mx-auto">
           Collaborate, organize, and get things done. Effortless team task management for modern teams.
@@ -160,7 +160,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="w-full border-t border-white/20 py-6 text-center text-gray-400 text-sm mt-8">
-        &copy; {new Date().getFullYear()} Team Task Manager. Built with Next.js, Tailwind CSS, and ShadCN UI.
+        &copy; {new Date().getFullYear()} Team Taskify. Built with Next.js, Tailwind CSS, and ShadCN UI.
       </footer>
     </main>
   );

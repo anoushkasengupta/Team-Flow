@@ -7,7 +7,7 @@ import ScrollToTopButton from '@/components/ScrollToTopButton';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Task Manager",
+  title: "Taskify",
   description: "A modern task management application",
 };
 
