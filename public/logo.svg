@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="180" viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="500" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#232428"/>
+      <stop offset="1" stop-color="#232428"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="180" fill="url(#bg)"/>
+  <g>
+    <!-- Team icon -->
+    <path d="M40 90a50 50 0 1 1 100 0" stroke="#9B9BFF" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M140 90a50 50 0 1 1 -100 0" stroke="#9B9BFF" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <circle cx="90" cy="50" r="12" fill="#9B9BFF"/>
+    <circle cx="90" cy="130" r="12" fill="#9B9BFF"/>
+  </g>
+  <text x="170" y="115" font-family="'Segoe UI', 'Arial', sans-serif" font-size="80" fill="#9B9BFF" letter-spacing="2">team flow</text>
+</svg> 
