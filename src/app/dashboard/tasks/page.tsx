@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import TaskList from '../../../components/dashboard/tasks/TaskList';
 import TaskForm from '../../../components/dashboard/tasks/TaskForm';
@@ -13,11 +13,30 @@ const sections = [
   { key: 'add', label: 'Add New Task' },
 ];
 
+interface TasksDisplayContentProps {
+  activeSection: string;
+  refreshFlag: boolean;
+  onTaskSaved: () => void;
+}
+
+function TasksDisplayContent({ activeSection, refreshFlag, onTaskSaved }: TasksDisplayContentProps) {
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search') || '';
+
+  return (
+    <>
+      {activeSection === 'add' ? (
+        <TaskForm onTaskSaved={onTaskSaved} />
+      ) : (
+        <TaskList filter={activeSection} refreshFlag={refreshFlag} search={search} />
+      )}
+    </>
+  );
+}
+
 export default function TasksDashboard() {
   const [activeSection, setActiveSection] = useState('assigned');
   const [refreshFlag, setRefreshFlag] = useState(false);
-  const searchParams = useSearchParams();
-  const search = searchParams.get('search') || '';
 
   const refreshTasks = () => setRefreshFlag(!refreshFlag);
 
@@ -30,7 +49,9 @@ export default function TasksDashboard() {
             <li key={key}>
               <button
                 className={`pb-2 font-semibold ${
-                  activeSection === key ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-600 hover:text-blue-600'
+                  activeSection === key
+                    ? 'border-b-2 border-blue-600 text-blue-600'
+                    : 'text-gray-600 hover:text-blue-600'
                 }`}
                 onClick={() => setActiveSection(key)}
               >
@@ -41,13 +62,13 @@ export default function TasksDashboard() {
         </ul>
       </nav>
       <div>
-        {activeSection === 'add' ? (
-          <TaskForm onTaskSaved={refreshTasks} />
-        ) : (
-          <>
-            <TaskList filter={activeSection} refreshFlag={refreshFlag} search={search} />
-          </>
-        )}
+        <Suspense fallback={<div>Loading...</div>}>
+          <TasksDisplayContent
+            activeSection={activeSection}
+            refreshFlag={refreshFlag}
+            onTaskSaved={refreshTasks}
+          />
+        </Suspense>
       </div>
     </div>
   );

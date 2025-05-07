@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import TaskList from '../../components/dashboard/tasks/TaskList';
@@ -11,7 +11,7 @@ interface Task {
   createdAt: string;
 }
 
-export default function Dashboard() {
+function DashboardContent() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -63,5 +63,13 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Dashboard() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DashboardContent />
+    </Suspense>
   );
 }
