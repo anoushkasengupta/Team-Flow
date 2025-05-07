@@ -50,9 +50,6 @@ export default function Navbar() {
               <Link href="/about" className="hover:text-blue-600 transition-colors font-medium">About Us</Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/dashboard" className="hover:text-blue-600 transition-colors font-medium">Dashboard</Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
               <Link href="/pricing" className="hover:text-blue-600 transition-colors font-medium">Super Pricing Plan</Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
@@ -114,25 +111,6 @@ export default function Navbar() {
               <nav className="flex flex-col gap-2 px-6 py-4">
                 <Link href="/" className="py-2" onClick={() => setOpen(false)}>Home</Link>
                 <Link href="/about" className="py-2" onClick={() => setOpen(false)}>About Us</Link>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="justify-start w-full">Dashboard</Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-48">
-                    <DropdownMenuItem asChild>
-                      <Link href="/dashboard/tasks" onClick={() => setOpen(false)}>Tasks</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link href="/dashboard/team" onClick={() => setOpen(false)}>Team</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link href="/dashboard/calendar" onClick={() => setOpen(false)}>Calendar</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link href="/dashboard/settings" onClick={() => setOpen(false)}>Settings</Link>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
                 <Link href="/pricing" className="py-2" onClick={() => setOpen(false)}>Super Pricing Plan</Link>
                 <Link href="/how-to-use" className="py-2" onClick={() => setOpen(false)}>How to Use the Software</Link>
                 <Link href="/docs" className="py-2" onClick={() => setOpen(false)}>Docs</Link>
@@ -157,4 +135,4 @@ export default function Navbar() {
       </div>
     </nav>
   );
-} 
+}
